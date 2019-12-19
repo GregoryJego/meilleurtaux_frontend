@@ -1,26 +1,113 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import KindOfProperty from "./containers/KindOfProperty";
+import StateOfProperty from "./containers/StateOfProperty";
+import UseOfProperty from "./containers/UseOfProperty";
+import CurrentSituation from "./containers/CurrentSituation";
+import PropertyLocation from "./containers/PropertyLocation";
+import ProjectAmount from "./containers/ProjectAmount";
+import ContactDetails from "./containers/ContactDetails";
+import FormFinished from "./containers/FormFinished";
+
+import Cookies from "js-cookie";
+
+import "./App.css";
+
+export default function App() {
+  // We will initialize the step state from what is in the cookies
+  // The `step` state will be used to save where the user is
+  const userDataCookie = Cookies.get("userData");
+  let transformUserDataCookie;
+  if (userDataCookie) transformUserDataCookie = JSON.parse(userDataCookie);
+  else transformUserDataCookie = null;
+  const [actualStep, setActualStep] = useState();
+  const [userData, setUserData] = useState(transformUserDataCookie);
+  const [choiceSelected, setChoiceSelected] = useState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/step8">
+          <FormFinished setActualStep={setActualStep} userData={userData} />
+        </Route>
+        <Route exact path="/step7">
+          <ContactDetails
+            setActualStep={setActualStep}
+            userData={userData}
+            choiceSelected={choiceSelected}
+            setChoiceSelected={setChoiceSelected}
+          />
+        </Route>
+        <Route exact path="/step6">
+          <ProjectAmount
+            setActualStep={setActualStep}
+            userData={userData}
+            choiceSelected={choiceSelected}
+            setChoiceSelected={setChoiceSelected}
+          />
+        </Route>
+        <Route exact path="/step5">
+          <PropertyLocation
+            setActualStep={setActualStep}
+            userData={userData}
+            choiceSelected={choiceSelected}
+            setChoiceSelected={setChoiceSelected}
+          />
+        </Route>
+        <Route exact path="/step4">
+          <CurrentSituation
+            setActualStep={setActualStep}
+            userData={userData}
+            choiceSelected={choiceSelected}
+            setChoiceSelected={setChoiceSelected}
+          />
+        </Route>
+        <Route exact path="/step3">
+          <UseOfProperty
+            setActualStep={setActualStep}
+            userData={userData}
+            choiceSelected={choiceSelected}
+            setChoiceSelected={setChoiceSelected}
+          />
+        </Route>
+        <Route exact path="/step2">
+          <StateOfProperty
+            setActualStep={setActualStep}
+            userData={userData}
+            choiceSelected={choiceSelected}
+            setChoiceSelected={setChoiceSelected}
+          />
+        </Route>
+        <Route path="/step1">
+          <KindOfProperty
+            setActualStep={setActualStep}
+            userData={userData}
+            choiceSelected={choiceSelected}
+            setChoiceSelected={setChoiceSelected}
+          />
+        </Route>
+        <Route path="/">
+          <KindOfProperty
+            setActualStep={setActualStep}
+            userData={userData}
+            choiceSelected={choiceSelected}
+            setChoiceSelected={setChoiceSelected}
+          />
+        </Route>
+      </Switch>
+      <Footer
+        actualStep={actualStep}
+        setActualStep={setActualStep}
+        userData={userData}
+        setUserData={setUserData}
+        choiceSelected={choiceSelected}
+        setChoiceSelected={setChoiceSelected}
+      />
+    </Router>
   );
 }
-
-export default App;

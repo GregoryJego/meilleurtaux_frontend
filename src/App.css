@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
+/******************************  RESET ******************************/
+p,
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+hr {
+  border: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/****************************** GLOBAL RULES ******************************/
+
+/**** 1 - Import Oswald font ****/
+@import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
+
+/**** 2 - Define colors and font for the whole body ****/
+body {
+  --orange: #e8a144;
+  --orange2: #ff9e23;
+  --orange3: #ffdfb1;
+  --white: #ffffff;
+  --grey: #dbdbdb;
+  --grey2: #f1f1f1;
+  --grey3: #f0f0f0;
+  font-family: "Oswald", sans-serif;
+}
+
+/**** 3 - Define the container that will be used for all the pages ****/
+.container {
+  padding: 1rem 4rem;
+}
+
+/**** 4 - Define some reccurent rules ****/
+.pv-50 {
+  padding: 50px 0;
+}
+
+.p-15 {
+  padding: 15px;
+}
+
+.br-5 {
+  border-radius: 5px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.center {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.d-flex {
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }
+
+/* HEADER */
+
+/* CHECKBOX */
+
+/* BUTTON */
+
+/* FOOTER */
