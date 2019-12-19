@@ -36,7 +36,7 @@ export default function FormFinished({ userData, setActualStep }) {
             email: userData.email
           };
           const result = await axios.post(
-            "http://localhost:3000/estimate/create",
+            "https://meilleurtaux-backend-gj.herokuapp.com/estimate/create",
             formattedData
           );
           setFileNumber(result.data);
