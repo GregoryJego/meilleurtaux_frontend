@@ -99,22 +99,7 @@ export default function App() {
             setChoiceSelected={setChoiceSelected}
           />
         </Route>
-        {/* <Route exact path="/">
-          {<Home /> ? (
-            <Home />
-          ) : (
-            <Redirect
-              to={
-                <KindOfProperty
-                  setActualStep={setActualStep}
-                  userData={userData}
-                  choiceSelected={choiceSelected}
-                  setChoiceSelected={setChoiceSelected}
-                />
-              }
-            />
-          )}
-        </Route> */}
+        <Redirect from="/" to="/step1" />
         <Route
           render={() => (
             <div className="container">
