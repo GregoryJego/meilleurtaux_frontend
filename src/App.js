@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+  Route
+} from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -12,6 +16,7 @@ import PropertyLocation from "./containers/PropertyLocation";
 import ProjectAmount from "./containers/ProjectAmount";
 import ContactDetails from "./containers/ContactDetails";
 import FormFinished from "./containers/FormFinished";
+import Admin from "./containers/Admin";
 
 import Cookies from "js-cookie";
 
@@ -32,6 +37,9 @@ export default function App() {
     <Router>
       <Header />
       <Switch>
+        <Route exact path="/admin">
+          <Admin />
+        </Route>
         <Route exact path="/step8">
           <FormFinished setActualStep={setActualStep} userData={userData} />
         </Route>
@@ -83,7 +91,7 @@ export default function App() {
             setChoiceSelected={setChoiceSelected}
           />
         </Route>
-        <Route path="/step1">
+        <Route exact path="/step1">
           <KindOfProperty
             setActualStep={setActualStep}
             userData={userData}
@@ -91,14 +99,31 @@ export default function App() {
             setChoiceSelected={setChoiceSelected}
           />
         </Route>
-        <Route path="/">
-          <KindOfProperty
-            setActualStep={setActualStep}
-            userData={userData}
-            choiceSelected={choiceSelected}
-            setChoiceSelected={setChoiceSelected}
-          />
-        </Route>
+        {/* <Route exact path="/">
+          {<Home /> ? (
+            <Home />
+          ) : (
+            <Redirect
+              to={
+                <KindOfProperty
+                  setActualStep={setActualStep}
+                  userData={userData}
+                  choiceSelected={choiceSelected}
+                  setChoiceSelected={setChoiceSelected}
+                />
+              }
+            />
+          )}
+        </Route> */}
+        <Route
+          render={() => (
+            <div className="container">
+              <h2 style={{ color: "var(--orange)" }}>
+                Erreur 404 : Cette page n'existe pas
+              </h2>
+            </div>
+          )}
+        />
       </Switch>
       <Footer
         actualStep={actualStep}

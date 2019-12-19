@@ -14,7 +14,7 @@ export default function NumberInput({
 }) {
   useEffect(() => {
     // we verify if a choice has already been made
-    if (userData) {
+    if (userData.budget) {
       // we set the value according to the type of NumberInput ("Montant estimé de votre acquisition", "Montant estimé des travaux", etc)
       let number;
       switch (label) {

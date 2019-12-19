@@ -31,17 +31,7 @@ export default function Next({
       {isActive && (
         <Link
           to={`/step${actualStep + 1}`}
-          style={{
-            borderRadius: 35,
-            width: 100,
-            textDecoration: "none",
-            padding: ".5rem 1rem",
-            display: "flex",
-            justifyContent: "center",
-            color: "var(--white)",
-            cursor: "pointer",
-            backgroundColor: "var(--orange)"
-          }}
+          className="button"
           onClick={() => {
             // newUserData will be used to store the new value
             let newUserData = {};
