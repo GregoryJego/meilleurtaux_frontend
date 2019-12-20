@@ -35,9 +35,9 @@ export default function ProjectAmount({
     if (propertyAmount !== 0) {
       // we verify is userData exists, otherwise we can't have access to the property "use"
       if (userData) {
-        if (userData.state === "ANCIEN") {
+        if (userData.state === "ancien") {
           setNotaryFees(Math.round((1.8 / 100) * propertyAmount));
-        } else if (userData.state === "NEUF") {
+        } else if (userData.state === "neuf") {
           setNotaryFees(Math.round((7.38 / 100) * propertyAmount));
         } else
           setError(
