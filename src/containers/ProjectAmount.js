@@ -17,8 +17,10 @@ export default function ProjectAmount({
   useEffect(() => {
     // Does userData exist ?
     if (userData) {
-      // If yes, we get the stored value : "budget" for step 6
-      setChoiceSelected(userData["budget"]);
+      if (userData.budget) {
+        // If yes, we get the stored value : "budget" for step 6
+        setChoiceSelected(userData.budget);
+      }
     } else setChoiceSelected();
   }, [setChoiceSelected, userData]);
 

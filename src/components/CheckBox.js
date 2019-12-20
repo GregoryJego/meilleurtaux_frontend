@@ -25,13 +25,9 @@ export default function CheckBox({ label, choiceSelected, setChoiceSelected }) {
         color: isChecked ? "var(--white)" : "var(--black)"
       }}
       onClick={() => {
-        if (!isChecked) setChoiceSelected(label);
+        if (!isChecked) setChoiceSelected(label.toLowerCase());
         else setChoiceSelected("");
         setIsChecked(!isChecked);
-
-        // let newUserSteps = userSteps;
-        // newUserSteps.choices[userSteps.actualStep - 1].data[0] = label;
-        // setUserSteps(newUserSteps);
       }}
     >
       <div

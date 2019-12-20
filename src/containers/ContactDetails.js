@@ -19,10 +19,12 @@ export default function ContactDetails({
 
   useEffect(() => {
     // Does userData exist ?
-    if (userData.email) {
-      // If yes, we get the stored value : "email" for step 7
-      setEmail(userData.email);
-      setIsChecked(true);
+    if (userData) {
+      if (userData.email) {
+        // If yes, we get the stored value : "email" for step 7
+        setEmail(userData.email);
+        setIsChecked(true);
+      }
     }
   }, [userData]);
 

@@ -14,23 +14,25 @@ export default function NumberInput({
 }) {
   useEffect(() => {
     // we verify if a choice has already been made
-    if (userData.budget) {
-      // we set the value according to the type of NumberInput ("Montant estimé de votre acquisition", "Montant estimé des travaux", etc)
-      let number;
-      switch (label) {
-        case "Montant estimé de votre acquisition*":
-          number = Number(userData.budget.split("-")[0]);
-          break;
-        case "Montant estimé des travaux":
-          number = Number(userData.budget.split("-")[1]);
-          break;
-        case "Frais de notaire*":
-          number = Number(userData.budget.split("-")[2]);
-          break;
-        default:
-          number = 0;
+    if (userData) {
+      if (userData.budget) {
+        // we set the value according to the type of NumberInput ("Montant estimé de votre acquisition", "Montant estimé des travaux", etc)
+        let number;
+        switch (label) {
+          case "Montant estimé de votre acquisition*":
+            number = Number(userData.budget.split("-")[0]);
+            break;
+          case "Montant estimé des travaux":
+            number = Number(userData.budget.split("-")[1]);
+            break;
+          case "Frais de notaire*":
+            number = Number(userData.budget.split("-")[2]);
+            break;
+          default:
+            number = 0;
+        }
+        setValue(number);
       }
-      setValue(number);
     }
   }, [userData, label, setValue]);
 

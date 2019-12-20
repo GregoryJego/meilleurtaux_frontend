@@ -1,9 +1,6 @@
 import React from "react";
 import "../App.css";
-
-const numberWithSpaces = number => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-};
+import NumberWithSpaces from "../functions/NumberWithSpaces";
 
 export default function Total({ label, bgColor, total, choiceSelected }) {
   return (
@@ -38,7 +35,7 @@ export default function Total({ label, bgColor, total, choiceSelected }) {
             borderBottom: "3px solid var(--grey)"
           }}
         >
-          <p>{numberWithSpaces(total)}</p>
+          <p>{NumberWithSpaces(total)}</p>
         </div>
         <span style={{ marginLeft: ".5rem" }}>€</span>
       </div>

@@ -35,7 +35,7 @@ export default function App() {
 
   return (
     <Router>
-      <Header />
+      <Header actualStep={actualStep} />
       <Switch>
         <Route exact path="/admin">
           <Admin />
