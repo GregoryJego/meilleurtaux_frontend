@@ -5,7 +5,7 @@ export default function CheckBox({ label, choiceSelected, setChoiceSelected }) {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    if (choiceSelected !== label) setIsChecked(false);
+    if (choiceSelected !== label.toLowerCase()) setIsChecked(false);
     else setIsChecked(true);
   }, [choiceSelected, label]);
 
