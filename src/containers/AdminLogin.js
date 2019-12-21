@@ -22,25 +22,32 @@ export default function AdminLogin({ setIsBackOffice, setToken, token }) {
   // We are on the Back Office
   setIsBackOffice(true);
 
+  // We reinitialize the error message when the input changes
   useEffect(() => {
     setError("");
   }, [input]);
 
   useEffect(() => {
+    // Does password exist?
     if (password) {
       const abortController = new AbortController();
+      // The loading begins
       setIsLoading(true);
+      // Function to fetch data
       const fetchData = async () => {
         try {
           const result = await axios.post(
             "https://meilleurtaux-backend-gj.herokuapp.com/admin/login",
             { password: password }
           );
-          // Status === 200 => success
+          // Status === 200 => so, it is a success
           if (result.status === 200) {
             setToken(result.data.token);
+            // We save the token
             Cookies.set("token", result.data.token);
+            // We go to admin/infos page
             history.push("/admin/infos");
+            // We clean
             return function cleanup() {
               abortController.abort();
             };
@@ -62,23 +69,11 @@ export default function AdminLogin({ setIsBackOffice, setToken, token }) {
         Veuillez entrer un mot de passe pour accéder à l'espace d'administration
       </p>
       <div style={{ display: "flex" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            marginLeft: "1rem"
-          }}
-        >
+        <div className="adminloginbox">
           <p>Mot de passe</p>
           <div style={{ display: "flex", alignItems: "flex-start" }}>
             <input
-              style={{
-                height: 24,
-                fontFamily: "Oswald",
-                fontWeight: "800",
-                fontSize: 16
-              }}
+              className="input"
               placeholder="Password"
               onChange={event => {
                 setInput(event.target.value);

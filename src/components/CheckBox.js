@@ -5,6 +5,7 @@ export default function CheckBox({ label, choiceSelected, setChoiceSelected }) {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
+    // We use toLowerCase because the labels are in uppercase
     if (choiceSelected !== label.toLowerCase()) setIsChecked(false);
     else setIsChecked(true);
   }, [choiceSelected, label]);
@@ -22,32 +23,8 @@ export default function CheckBox({ label, choiceSelected, setChoiceSelected }) {
         setIsChecked(!isChecked);
       }}
     >
-      <div
-        style={{
-          width: 16,
-          height: 16,
-          borderRadius: 16,
-          border: "1px solid var(--grey)",
-          marginRight: ".5rem",
-          position: "relative",
-          backgroundColor: "var(--white)"
-        }}
-      >
-        {isChecked && (
-          <div
-            style={{
-              position: "absolute",
-              right: 4,
-              top: 4,
-              width: 8,
-              height: 8,
-              borderRadius: 8,
-              backgroundColor: "var(--orange)"
-            }}
-          />
-        )}
-      </div>
-      <p style={{ flex: 2, fontWeight: "800", textAlign: "center" }}>{label}</p>
+      <div className="check">{isChecked && <div className="checksmall" />}</div>
+      <p className="checklabel">{label}</p>
     </div>
   );
 }

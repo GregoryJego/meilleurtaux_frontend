@@ -14,30 +14,21 @@ export default function Footer({
   isBackOffice,
   error
 }) {
-  // Label for the Next button
+  // We initialize the label for the next button
   let label;
+  // If we are on the step 7 (email), the label is "Valider"
   if (actualStep === 7) label = "Valider";
+  // Otherwise it is "Suivant"
   else label = "Suivant";
 
   return (
     <>
+      {/* We verifiy if we are not at the last step and that we are in the front office */}
       {actualStep < 8 && !isBackOffice && (
         <div className="container">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "2rem"
-            }}
-          >
+          <div className="footerbox">
             <Prev
               actualStep={actualStep}
-              setActualStep={setActualStep}
-              userData={userData}
-              setUserData={setUserData}
-              choiceSelected={choiceSelected}
               setChoiceSelected={setChoiceSelected}
             />
             <ProgressBar actualStep={actualStep} />
@@ -57,11 +48,6 @@ export default function Footer({
             <span style={{ textDecoration: "underline" }}>
               Mentions légales
             </span>
-          </div>
-          <div>CHOIX ETAPE EN COURS : {choiceSelected}</div>
-          <div>
-            CHOIX ENREGISTRES DANS LES COOKIES :
-            {userData && userData[Object.keys(userData)[actualStep - 1]]}
           </div>
         </div>
       )}

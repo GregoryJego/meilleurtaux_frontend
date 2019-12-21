@@ -5,21 +5,11 @@ export default function TextInput({ label, placeholder, setInput }) {
   const [value, setValue] = useState();
   return (
     <div style={{ display: "flex" }}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          marginLeft: "1rem"
-        }}
-      >
+      <div className="textinputbox">
         <span>{label}</span>
         <input
+          className="input"
           style={{
-            height: 24,
-            fontFamily: "Oswald",
-            fontWeight: "800",
-            fontSize: 16,
             marginTop: ".5rem"
           }}
           placeholder={placeholder}

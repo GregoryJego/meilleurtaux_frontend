@@ -27,31 +27,25 @@ export default function CurrentSituation({
   return (
     <div className="container">
       <Title label="VOTRE SITUATION ACTUELLE" />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between"
-        }}
-      >
+      <div className="flexrowb">
         <CheckBox
           label="LOCATAIRE"
           choiceSelected={choiceSelected}
           setChoiceSelected={setChoiceSelected}
         />
-        <span style={{ width: "1rem" }} />
+        <span className="w1rem" />
         <CheckBox
           label="PROPRIÉTAIRE"
           choiceSelected={choiceSelected}
           setChoiceSelected={setChoiceSelected}
         />
-        <span style={{ width: "1rem" }} />
+        <span className="w1rem" />
         <CheckBox
           label="BÉNÉFICIAIRE D'UN LOGEMENT DE FONCTION"
           choiceSelected={choiceSelected}
           setChoiceSelected={setChoiceSelected}
         />
-        <span style={{ width: "1rem" }} />
+        <span className="w1rem" />
         <CheckBox
           label="HÉBERGÉ À TITRE GRATUIT"
           choiceSelected={choiceSelected}

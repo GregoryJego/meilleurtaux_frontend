@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import "../App.css";
 
-// const numberWithSpaces = number => {
-//   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-// };
-
 export default function NumberInput({
   label,
   bgColor,
@@ -20,13 +16,13 @@ export default function NumberInput({
         let number;
         switch (label) {
           case "Montant estimé de votre acquisition*":
-            number = Number(userData.budget.split("-")[0]);
+            number = Number(userData.budget.split("-")[0].replace(" ", ""));
             break;
           case "Montant estimé des travaux":
-            number = Number(userData.budget.split("-")[1]);
+            number = Number(userData.budget.split("-")[1].replace(" ", ""));
             break;
           case "Frais de notaire*":
-            number = Number(userData.budget.split("-")[2]);
+            number = Number(userData.budget.split("-")[2].replace(" ", ""));
             break;
           default:
             number = 0;
@@ -75,11 +71,6 @@ export default function NumberInput({
           onChange={event => {
             setValue(event.target.value);
           }}
-          // onBlur={event => {
-          //   console.log("ON BLUR");
-          //   console.log(event.target.value);
-          //   setValue(Number(numberWithSpaces(event.target.value)));
-          // }}
         />
         <span style={{ marginLeft: ".5rem" }}>€</span>
       </div>

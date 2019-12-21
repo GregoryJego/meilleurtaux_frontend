@@ -1,3 +1,3 @@
-export default function NumberWithSpaces(string) {
-  return string.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+export default function NumberWithSpaces(str) {
+  return str.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }

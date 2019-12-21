@@ -116,9 +116,8 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
                               }}
                             >
                               <p
+                                className="blgrey"
                                 style={{
-                                  borderLeft: "1px solid var(--grey)",
-                                  padding: "1rem",
                                   flex: 1
                                 }}
                               >
@@ -127,9 +126,8 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
                                 )}
                               </p>
                               <p
+                                className="blgrey"
                                 style={{
-                                  borderLeft: "1px solid var(--grey)",
-                                  padding: "1rem",
                                   flex: 3,
                                   textAlign: "justify"
                                 }}
@@ -137,27 +135,24 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
                                 {result.email}
                               </p>
                               <p
+                                className="blgrey"
                                 style={{
-                                  borderLeft: "1px solid var(--grey)",
-                                  padding: "1rem",
                                   flex: 2
                                 }}
                               >
                                 {result.type}
                               </p>
                               <p
+                                className="blgrey"
                                 style={{
-                                  borderLeft: "1px solid var(--grey)",
-                                  padding: "1rem",
                                   flex: 1
                                 }}
                               >
                                 {result.state}
                               </p>
                               <p
+                                className="blgrey"
                                 style={{
-                                  borderLeft: "1px solid var(--grey)",
-                                  padding: "1rem",
                                   flex: 2
                                 }}
                               >
@@ -165,11 +160,10 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
                               </p>
                             </div>
                             <Delete
+                              className="blgrey"
                               style={{
                                 flex: 1,
-                                borderLeft: "1px solid var(--grey)",
-                                borderRight: "1px solid var(--grey)",
-                                padding: "1rem"
+                                borderRight: "1px solid var(--grey)"
                               }}
                               onClick={() => {
                                 setEstimateId(result._id);

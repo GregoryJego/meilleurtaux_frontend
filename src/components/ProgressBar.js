@@ -2,16 +2,23 @@ import React from "react";
 import "../App.css";
 
 export default function ProgressBar({ actualStep }) {
-  const progress = Math.round((actualStep / 8) * 100);
+  // totalStep represents the total number of steps
+  const totalSteps = 8;
+
+  // We calculate the progression (percentage)
+  const progress = Math.round((actualStep / totalSteps) * 100);
+
+  // We define the width of the progressbar
   const barWidth = 400;
+
+  // We calculate the width of the orange <hr> that will be on the left (25 represents the size of the circle in which the percentage of progression appears)
   const progressWidth = (progress * barWidth) / 100 - 25;
+
   return (
     <div
+      className="flexstartcenter"
       style={{
-        width: barWidth,
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "center"
+        width: barWidth
       }}
     >
       <hr
@@ -23,29 +30,12 @@ export default function ProgressBar({ actualStep }) {
         }}
       />
       <div
+        className="proglgcircle"
         style={{
-          width: 50,
-          height: 50,
-          borderRadius: 50,
-          backgroundColor: "var(--orange3)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "absolute",
           marginLeft: progressWidth
         }}
       >
-        <div
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: 50,
-            backgroundColor: "var(--orange2)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
+        <div className="progslcircle ">
           <p style={{ color: "white", fontSize: 14 }}>{progress}%</p>
         </div>
       </div>

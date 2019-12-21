@@ -2,13 +2,13 @@ import React from "react";
 import "../App.css";
 import NumberWithSpaces from "../functions/NumberWithSpaces";
 
-export default function Total({ label, bgColor, total, choiceSelected }) {
+export default function Total({ label, total }) {
   return (
     <div
       style={{
         flex: 1,
         padding: ".5rem",
-        backgroundColor: bgColor
+        backgroundColor: "var(--white)"
       }}
     >
       <div
@@ -23,19 +23,13 @@ export default function Total({ label, bgColor, total, choiceSelected }) {
           <span>{label}</span>
         </div>
         <div
+          className="nbinput"
           style={{
-            flex: 2,
-            height: 24,
-            fontFamily: "Oswald",
-            fontWeight: "800",
-            fontSize: 18,
-            padding: ".5rem",
-            textAlign: "right",
             border: "1px solid var(--grey)",
             borderBottom: "3px solid var(--grey)"
           }}
         >
-          <p>{NumberWithSpaces(toString(total))}</p>
+          <p>{NumberWithSpaces(total.toString())}</p>
         </div>
         <span style={{ marginLeft: ".5rem" }}>€</span>
       </div>

@@ -37,7 +37,7 @@ export default function KindOfProperty({
           choiceSelected={choiceSelected}
           setChoiceSelected={setChoiceSelected}
         />
-        <span style={{ width: "1rem" }} />
+        <span className="w1rem" />
         <CheckBox
           label="APPARTEMENT"
           choiceSelected={choiceSelected}

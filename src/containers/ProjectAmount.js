@@ -38,13 +38,14 @@ export default function ProjectAmount({
 
   useEffect(() => {
     // we calculate the notary fees only if propertyAmount is greater than 0 (NB : it can't be a negative number because NumberInput is 0 at minimum)
-    if (propertyAmount !== 0) {
+    if (Number(propertyAmount) !== 0) {
       // we verify is userData exists, otherwise we can't have access to the property "state"
       if (userData) {
-        if (userData.state === "ancien") {
-          setNotaryFees(Math.round((1.8 / 100) * propertyAmount));
-        } else if (userData.state === "neuf") {
-          setNotaryFees(Math.round((7.38 / 100) * propertyAmount));
+        // We apply the notary fees according to the state of the property : "neuf" or "ancien"
+        if (userData.state === "neuf") {
+          setNotaryFees(Math.round((1.8 / 100) * Number(propertyAmount)));
+        } else if (userData.state === "ancien") {
+          setNotaryFees(Math.round((7.38 / 100) * Number(propertyAmount)));
         } else
           setError(
             "Une erreur s'est produite, les frais de notaire ne peuvent être calculés. Veuillez recommencer depuis l'étape 1."
@@ -54,21 +55,25 @@ export default function ProjectAmount({
   }, [propertyAmount, userData, setError]);
 
   useEffect(() => {
+    // we calculate the total
     const newTotal =
       Number(propertyAmount) + Number(worksAmount) + Number(notaryFees);
     setTotal(newTotal);
-    if (propertyAmount != 0 && notaryFees != 0) {
+    // we verify if propertyAmount and notaryFees are not equal to zero
+    if (Number(propertyAmount) !== 0 && Number(notaryFees) !== 0) {
       setError("");
       setChoiceSelected(
-        NumberWithSpaces(propertyAmount) +
+        NumberWithSpaces(propertyAmount.toString()) +
           "-" +
-          NumberWithSpaces(worksAmount) +
+          NumberWithSpaces(worksAmount.toString()) +
           "-" +
-          NumberWithSpaces(notaryFees) +
+          NumberWithSpaces(notaryFees.toString()) +
           "-" +
-          newTotal
+          NumberWithSpaces(newTotal.toString())
       );
-    } else
+    }
+    // propertyAmount or/and notaryFees is/are equal to zero
+    else
       setError(
         "Le montant estimé de votre acquisition et les frais de notaire sont des champs obligatoires"
       );
@@ -100,12 +105,7 @@ export default function ProjectAmount({
         userData={userData}
       />
       {ErrorMsg(error)}
-      <Total
-        label="Budget total estimé du projet"
-        bgColor="var(--white)"
-        total={total}
-        choiceSelected={choiceSelected}
-      />
+      <Total label="Budget total estimé du projet" total={total} />
     </div>
   );
 }

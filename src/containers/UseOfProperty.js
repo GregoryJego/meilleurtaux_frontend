@@ -20,7 +20,7 @@ export default function StateOfProperty({
     // Does userData exist ?
     if (userData) {
       // If yes, we get the stored value : "use" for step 3
-      setChoiceSelected(userData["use"]);
+      setChoiceSelected(userData.use);
     } else setChoiceSelected();
   }, [setChoiceSelected, userData]);
 
@@ -33,13 +33,13 @@ export default function StateOfProperty({
           choiceSelected={choiceSelected}
           setChoiceSelected={setChoiceSelected}
         />
-        <span style={{ width: "1rem" }} />
+        <span className="w1rem" />
         <CheckBox
           label="RÉSIDENCE SECONDAIRE"
           choiceSelected={choiceSelected}
           setChoiceSelected={setChoiceSelected}
-        />{" "}
-        <span style={{ width: "1rem" }} />
+        />
+        <span className="w1rem" />
         <CheckBox
           label="INVESTISSEMENT LOCATIF"
           choiceSelected={choiceSelected}

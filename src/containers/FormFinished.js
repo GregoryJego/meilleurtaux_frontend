@@ -38,10 +38,10 @@ export default function FormFinished({
             use: userData.use,
             situation: userData.situation,
             location: userData.location,
-            propertyAmount: Number(userData.budget.split("-")[0]),
-            worksAmount: Number(userData.budget.split("-")[1]),
-            notaryFees: Number(userData.budget.split("-")[2]),
-            totalBudget: Number(userData.budget.split("-")[3]),
+            propertyAmount: userData.budget.split("-")[0],
+            worksAmount: userData.budget.split("-")[1],
+            notaryFees: userData.budget.split("-")[2],
+            totalBudget: userData.budget.split("-")[3],
             email: userData.email
           };
           // We try to send the data
@@ -83,15 +83,7 @@ export default function FormFinished({
                   </span>
                 )}
               </p>
-              <p
-                style={{
-                  textDecoration: "underline",
-                  marginTop: "2rem",
-                  fontSize: 12
-                }}
-              >
-                Mentions légales
-              </p>
+              <p className="smalltext">Mentions légales</p>
             </>
           ) : (
             <>

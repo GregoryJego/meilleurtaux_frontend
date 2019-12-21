@@ -25,18 +25,19 @@ export default function ContactDetails({
   useEffect(() => {
     // Does userData exist ?
     if (userData) {
-      console.log("userData existe");
       if (userData.email) {
         // If yes, we get the stored value : "email" for step 7
         setEmail(userData.email);
-        console.log("L'email est : " + userData.email);
+        // the checkbox is set to true
         setIsChecked(true);
       }
     }
   }, [userData]);
 
   useEffect(() => {
+    // Does the email exist
     if (email) {
+      // We check if the email looks like a real email
       if (
         email.indexOf("@") === -1 ||
         email.indexOf("@") === 0 ||
@@ -47,6 +48,7 @@ export default function ContactDetails({
       )
         setError("Veuillez entrer une adresse email valide");
       else {
+        // we reinitialize the error message
         setError("");
         if (isChecked) setChoiceSelected(email);
         else setChoiceSelected();
@@ -60,31 +62,8 @@ export default function ContactDetails({
   return (
     <div className="container">
       <Title label="VOS COORDONNÉES" />
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          marginBottom: "1rem"
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "var(--orange)",
-            color: "var(--white)",
-            padding: "1rem",
-            fontSize: 20,
-            fontWeight: "800",
-            textAlign: "center",
-            maxWidth: "20%",
-            height: 190
-          }}
-        >
+      <div className="boxcontainer">
+        <div className="orangebox">
           Un devis vous sera envoyé par mail avec un récapitulatif de votre
           demande.
         </div>
@@ -96,19 +75,12 @@ export default function ContactDetails({
         setValue={setEmail}
       />
       {ErrorMsg(error)}
-      <div
-        style={{
-          display: "flex",
-          marginTop: "1rem",
-          paddingLeft: "1rem"
-        }}
-      >
+      <div className="checkcontainer">
         <input
           type="checkbox"
           style={{
             marginRight: ".5rem"
           }}
-          // value={isChecked}
           checked={isChecked}
           onChange={() => {
             setIsChecked(!isChecked);
