@@ -76,6 +76,7 @@ export default function App() {
       <Switch>
         <Route exact path="/admin/infos">
           <Admin
+            title="Admin"
             setIsBackOffice={setIsBackOffice}
             token={token}
             setToken={setToken}
@@ -83,6 +84,7 @@ export default function App() {
         </Route>
         <Route exact path="/admin">
           <AdminLogin
+            title="Connexion Admin"
             setIsBackOffice={setIsBackOffice}
             setToken={setToken}
             token={token}
@@ -90,6 +92,7 @@ export default function App() {
         </Route>
         <Route exact path="/step8">
           <FormFinished
+            title="Formulaire terminé"
             setActualStep={setActualStep}
             userData={userData}
             setUserData={setUserData}
@@ -98,6 +101,7 @@ export default function App() {
         </Route>
         <Route exact path="/step7">
           <ContactDetails
+            title="Coordonnées"
             setActualStep={setActualStep}
             userData={userData}
             setChoiceSelected={setChoiceSelected}
@@ -108,6 +112,7 @@ export default function App() {
         </Route>
         <Route exact path="/step6">
           <ProjectAmount
+            title="Montant du projet"
             setActualStep={setActualStep}
             userData={userData}
             choiceSelected={choiceSelected}
@@ -119,6 +124,7 @@ export default function App() {
         </Route>
         <Route exact path="/step5">
           <PropertyLocation
+            title="Localisation"
             setActualStep={setActualStep}
             userData={userData}
             choiceSelected={choiceSelected}
@@ -130,6 +136,7 @@ export default function App() {
         </Route>
         <Route exact path="/step4">
           <CurrentSituation
+            title="Situation actuelle"
             setActualStep={setActualStep}
             userData={userData}
             choiceSelected={choiceSelected}
@@ -139,6 +146,7 @@ export default function App() {
         </Route>
         <Route exact path="/step3">
           <UseOfProperty
+            title="Usage du bien"
             setActualStep={setActualStep}
             userData={userData}
             choiceSelected={choiceSelected}
@@ -148,6 +156,7 @@ export default function App() {
         </Route>
         <Route exact path="/step2">
           <StateOfProperty
+            title="Etat du bien"
             setActualStep={setActualStep}
             userData={userData}
             choiceSelected={choiceSelected}
@@ -157,6 +166,7 @@ export default function App() {
         </Route>
         <Route exact path="/step1">
           <KindOfProperty
+            title="Type de bien"
             setActualStep={setActualStep}
             userData={userData}
             choiceSelected={choiceSelected}
