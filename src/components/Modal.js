@@ -3,6 +3,7 @@ import "../App.css";
 import axios from "axios";
 
 import DeleteEstimate from "../functions/DeleteEstimate";
+import ModalInfoLeftCol from "../components/ModalInfoLeftCol";
 
 export default function Modal({ typeOfModal, setTypeOfModal, id, setRefresh }) {
   const [results, setResults] = useState();
@@ -31,7 +32,10 @@ export default function Modal({ typeOfModal, setTypeOfModal, id, setRefresh }) {
         top: 0,
         left: 0,
         width: "100vw",
-        height: document.body.scrollHeight,
+        height:
+          document.body.scrollHeight > window.screen.height
+            ? document.body.scrollHeight
+            : window.screen.height,
         backgroundColor: "rgba(0, 0, 0, 0.8)"
       }}
       onClick={() => {
@@ -144,91 +148,8 @@ export default function Modal({ typeOfModal, setTypeOfModal, id, setRefresh }) {
                       }}
                     >
                       {/* Colonne de gauche */}
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          flex: 1
-                        }}
-                      >
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Numéro de dossier :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Type de bien :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Etat du bien :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Usage du bien :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Localisation du bien :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Situation actuelle :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Adresse email :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Montant du bien :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Montant des travaux :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Frais de notaire :
-                        </p>
-                        <p
-                          style={{
-                            color: "var(--orange2)"
-                          }}
-                        >
-                          Budget total :
-                        </p>
-                      </div>
+                      <ModalInfoLeftCol />
+
                       {/* Colonne de droite */}
                       <div
                         style={{
