@@ -11,7 +11,8 @@ export default function Footer({
   setUserData,
   choiceSelected,
   setChoiceSelected,
-  isBackOffice
+  isBackOffice,
+  error
 }) {
   // Label for the Next button
   let label;
@@ -48,6 +49,7 @@ export default function Footer({
               setUserData={setUserData}
               choiceSelected={choiceSelected}
               setChoiceSelected={setChoiceSelected}
+              error={error}
             />
           </div>
           <div style={{ fontSize: 10 }}>
@@ -56,8 +58,11 @@ export default function Footer({
               Mentions légales
             </span>
           </div>
-          {/* <div>CHOIX ETAPE EN COURS : {choiceSelected}</div> */}
-          {/* <div>CHOIX ETAPE PRECEDENTE : {userData[actualStep - 2]}</div> */}
+          <div>CHOIX ETAPE EN COURS : {choiceSelected}</div>
+          <div>
+            CHOIX ENREGISTRES DANS LES COOKIES :
+            {userData && userData[Object.keys(userData)[actualStep - 1]]}
+          </div>
         </div>
       )}
     </>

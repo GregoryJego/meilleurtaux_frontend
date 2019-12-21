@@ -5,7 +5,10 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import ErrorMsg from "../components/ErrorMsg";
 
-export default function Admin({ setIsBackOffice, setToken }) {
+// To use Cookies
+import Cookies from "js-cookie";
+
+export default function AdminLogin({ setIsBackOffice, setToken, token }) {
   // Initialization of the error message
   const [error, setError] = useState("");
   const [input, setInput] = useState();
@@ -13,6 +16,8 @@ export default function Admin({ setIsBackOffice, setToken }) {
   const [isLoading, setIsLoading] = useState(false);
 
   let history = useHistory();
+
+  if (token) history.push("/admin/infos");
 
   // We are on the Back Office
   setIsBackOffice(true);
@@ -23,6 +28,7 @@ export default function Admin({ setIsBackOffice, setToken }) {
 
   useEffect(() => {
     if (password) {
+      const abortController = new AbortController();
       setIsLoading(true);
       const fetchData = async () => {
         try {
@@ -33,7 +39,11 @@ export default function Admin({ setIsBackOffice, setToken }) {
           // Status === 200 => success
           if (result.status === 200) {
             setToken(result.data.token);
+            Cookies.set("token", result.data.token);
             history.push("/admin/infos");
+            return function cleanup() {
+              abortController.abort();
+            };
           }
         } catch (e) {
           if (e.response.status === 401) setError("Mot de passe incorrect");
@@ -43,7 +53,7 @@ export default function Admin({ setIsBackOffice, setToken }) {
       };
       fetchData();
     }
-  }, [password, history]);
+  }, [password, history, setToken]);
 
   return (
     <div className="container">
@@ -93,7 +103,7 @@ export default function Admin({ setIsBackOffice, setToken }) {
                     error === "" ? "var(--orange)" : "var(--grey)"
                 }}
                 onClick={() => {
-                  setPassword(input);
+                  if (error === "") setPassword(input);
                 }}
               >
                 Valider

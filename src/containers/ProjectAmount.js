@@ -10,7 +10,9 @@ export default function ProjectAmount({
   userData,
   choiceSelected,
   setChoiceSelected,
-  setIsBackOffice
+  setIsBackOffice,
+  error,
+  setError
 }) {
   // The actual step is step 6
   setActualStep(6);
@@ -32,12 +34,11 @@ export default function ProjectAmount({
   const [worksAmount, setWorksAmount] = useState(0);
   const [notaryFees, setNotaryFees] = useState(0);
   const [total, setTotal] = useState(0);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     // we calculate the notary fees only if propertyAmount is greater than 0 (NB : it can't be a negative number because NumberInput is 0 at minimum)
     if (propertyAmount !== 0) {
-      // we verify is userData exists, otherwise we can't have access to the property "use"
+      // we verify is userData exists, otherwise we can't have access to the property "state"
       if (userData) {
         if (userData.state === "ancien") {
           setNotaryFees(Math.round((1.8 / 100) * propertyAmount));
@@ -49,18 +50,22 @@ export default function ProjectAmount({
           );
       }
     }
-  }, [propertyAmount, userData]);
+  }, [propertyAmount, userData, setError]);
 
   useEffect(() => {
     const newTotal =
       Number(propertyAmount) + Number(worksAmount) + Number(notaryFees);
     setTotal(newTotal);
-    if (propertyAmount !== 0 && notaryFees !== 0) {
+    if (propertyAmount != 0 && notaryFees != 0) {
+      setError("");
       setChoiceSelected(
         propertyAmount + "-" + worksAmount + "-" + notaryFees + "-" + newTotal
       );
-    }
-  }, [propertyAmount, worksAmount, notaryFees, setChoiceSelected]);
+    } else
+      setError(
+        "Le montant estimé de votre acquisition et les frais de notaire sont des champs obligatoires"
+      );
+  }, [propertyAmount, worksAmount, notaryFees, setChoiceSelected, setError]);
 
   return (
     <div className="container">

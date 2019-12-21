@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import Title from "../components/Title";
-import axios from "axios";
+
+// Delete and Refresh icons
 import { Delete, Refresh } from "@material-ui/icons";
+
+// The function to add spaces every thousands for numbers
 import NumberWithSpaces from "../functions/NumberWithSpaces";
+
+// Components
 import Modal from "../components/Modal";
+import Title from "../components/Title";
 import LineHeader from "../components/LineHeader";
+
+// To use axios
+import axios from "axios";
+
+// To use Cookies
+import Cookies from "js-cookie";
 
 export default function Admin({ setIsBackOffice, token, setToken }) {
   const [results, setResults] = useState();
@@ -25,8 +36,9 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
         const response = await axios.get(
           "https://meilleurtaux-backend-gj.herokuapp.com/estimate"
         );
-        if (response.data.estimates.length) setResults(response.data.estimates);
-        else setResults();
+        if (response.data.estimates.length) {
+          setResults(response.data.estimates);
+        } else setResults();
       } catch (e) {
         console.log("Une erreur s'est produite");
         setResults();
@@ -44,12 +56,13 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
     <>
       <div className="container">
         <Title label="Espace d'administration" />
-        {token && (
+        {token ? (
           <>
             <Link
               to={`/admin`}
               onClick={() => {
                 setToken();
+                Cookies.remove("token");
               }}
             >
               Se déconnecter
@@ -180,6 +193,10 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
               )}
             </div>
           </>
+        ) : (
+          <Link to={`/admin`} className="button">
+            Se connecter
+          </Link>
         )}
       </div>
       {typeOfModal && (

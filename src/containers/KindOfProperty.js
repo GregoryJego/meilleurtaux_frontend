@@ -8,10 +8,14 @@ export default function KindOfProperty({
   userData,
   choiceSelected,
   setChoiceSelected,
-  setIsBackOffice
+  setIsBackOffice,
+  setError
 }) {
   // The actual step is step 1
   setActualStep(1);
+
+  // We reinitialize the error message
+  setError("");
 
   // We are on the Front Office
   setIsBackOffice(false);

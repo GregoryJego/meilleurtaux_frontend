@@ -7,12 +7,13 @@ const axios = require("axios");
 export default function ZipcodeInput({
   label,
   choiceSelected,
-  setChoiceSelected
+  setChoiceSelected,
+  error,
+  setError
 }) {
   const [zipcode, setZipcode] = useState("");
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (choiceSelected) setZipcode(choiceSelected);
@@ -25,9 +26,9 @@ export default function ZipcodeInput({
         const response = await axios.get(
           `https://vicopo.selfbuild.fr/cherche/${zipcode}`
         );
-        if (!response.data.cities.length)
+        if (!response.data.cities.length) {
           setError("Ville ou code postal non trouvé");
-        else setError("");
+        } else setError("Veuillez choisir une ville");
         setCities(response.data.cities);
       } catch (e) {
         setError(e);
@@ -35,21 +36,26 @@ export default function ZipcodeInput({
       setIsLoading(false);
     };
 
-    // First, we check if there are at least 2 characters, and if the zipcode is different from the one stored
-    if (zipcode.length > 1 && zipcode !== choiceSelected) {
-      // We initialize the error at: "No error" which can be translated by an empty string
-      setError("");
-      // zipcode is a string. In this case, there is no limit, no maximum number of characters
-      if (isNaN(zipcode)) fetchData();
-      // zipcode is a number
-      // First, we check if the zipcode isn't too long
-      else if (zipcode.length <= 5) fetchData();
-      // In this case, the zipcode is too long, so we update the error message
-      else setError("Le code postal doit être composé de 5 chiffres");
+    if (zipcode === choiceSelected) setError("");
+    else {
+      // First, we check if there are at least 2 characters, and if the zipcode is different from the one stored
+      if (zipcode.length > 1 && zipcode !== choiceSelected) {
+        // We initialize the error at: "No error" which can be translated by an empty string
+        setError("");
+        // zipcode is a string. In this case, there is no limit, no maximum number of characters
+        if (isNaN(zipcode) && zipcode !== choiceSelected) {
+          fetchData();
+        }
+        // zipcode is a number
+        // First, we check if the zipcode isn't too long
+        else if (zipcode.length > 0 && zipcode.length <= 5) fetchData();
+        // In this case, the zipcode is too long, so we update the error message
+        else setError("Le code postal doit être composé de 5 chiffres");
+      }
+      // we re-initialize the cities
+      else setCities([]);
     }
-    // we re-initialize the cities to display to an empty array
-    else setCities([]);
-  }, [zipcode, choiceSelected]);
+  }, [zipcode, choiceSelected, setError]);
 
   return (
     <div
@@ -76,7 +82,9 @@ export default function ZipcodeInput({
           name="zipcode"
           type="text"
           value={zipcode}
-          onChange={event => setZipcode(event.target.value)}
+          onChange={event => {
+            setZipcode(event.target.value);
+          }}
           placeholder="Entrez un code postal ou une ville"
           style={{
             width: 300,
@@ -89,7 +97,6 @@ export default function ZipcodeInput({
             borderBottom: "3px solid var(--orange)"
           }}
         />
-        {ErrorMsg(error)}
         {cities.length ? (
           <ul
             style={{
@@ -102,11 +109,9 @@ export default function ZipcodeInput({
           >
             {isLoading ? (
               <div
+                className="flexcenter"
                 style={{
-                  display: "flex",
-                  height: "100%",
-                  justifyContent: "center",
-                  alignItems: "center"
+                  height: "100%"
                 }}
               >
                 <div className="loader"></div>
@@ -135,6 +140,7 @@ export default function ZipcodeInput({
         ) : (
           <></>
         )}
+        {ErrorMsg(error)}
       </div>
     </div>
   );

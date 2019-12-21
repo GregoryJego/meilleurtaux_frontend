@@ -9,7 +9,9 @@ export default function PropertyLocation({
   userData,
   choiceSelected,
   setChoiceSelected,
-  setIsBackOffice
+  setIsBackOffice,
+  error,
+  setError
 }) {
   // The actual step is step 5
   setActualStep(5);
@@ -34,6 +36,8 @@ export default function PropertyLocation({
         label="Ville ou code postal*"
         choiceSelected={choiceSelected}
         setChoiceSelected={setChoiceSelected}
+        error={error}
+        setError={setError}
       />
       <div style={{ padding: ".5rem", fontSize: 14 }}>
         <p>

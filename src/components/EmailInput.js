@@ -32,10 +32,10 @@ export default function EmailInput({ label, value, setValue }) {
             padding: ".5rem",
             outline: "none"
           }}
-          // value={value}
+          defaultValue={value}
           type="email"
           required
-          onChangeCapture={event => setValue(event.target.value)}
+          onChange={event => setValue(event.target.value)}
           placeholder="exemple@mail.com"
         />
       </div>

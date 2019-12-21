@@ -9,7 +9,9 @@ export default function ContactDetails({
   setActualStep,
   userData,
   setChoiceSelected,
-  setIsBackOffice
+  setIsBackOffice,
+  error,
+  setError
 }) {
   // The actual step is step 7
   setActualStep(7);
@@ -23,15 +25,15 @@ export default function ContactDetails({
   useEffect(() => {
     // Does userData exist ?
     if (userData) {
+      console.log("userData existe");
       if (userData.email) {
         // If yes, we get the stored value : "email" for step 7
         setEmail(userData.email);
+        console.log("L'email est : " + userData.email);
         setIsChecked(true);
       }
     }
   }, [userData]);
-
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (email) {
@@ -53,7 +55,7 @@ export default function ContactDetails({
       setError("");
       setChoiceSelected();
     }
-  }, [email, isChecked, setChoiceSelected]);
+  }, [email, isChecked, setChoiceSelected, setError]);
 
   return (
     <div className="container">

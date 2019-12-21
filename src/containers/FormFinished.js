@@ -9,6 +9,7 @@ import ErrorMsg from "../components/ErrorMsg";
 
 export default function FormFinished({
   userData,
+  setUserData,
   setActualStep,
   setIsBackOffice
 }) {
@@ -52,16 +53,18 @@ export default function FormFinished({
           setFileNumber(result.data);
           // We remove the cookie
           Cookies.remove("userData");
+          // We reinitialize userData
+          setUserData();
         } catch (e) {
           console.log(e.message);
-          setError(e.message);
+          setError("les données n'ont pas pu être envoyées");
         }
-      } else setError("Veuillez recommencer");
+      }
       // We stop the loading
       setIsLoading(false);
     };
     sendData();
-  }, [userData]);
+  }, [userData, setUserData]);
 
   return (
     <div className="container">
@@ -69,7 +72,7 @@ export default function FormFinished({
         <div className="loader"></div>
       ) : (
         <>
-          {error === "" ? (
+          {error === "" && fileNumber ? (
             <>
               <Title label="ET VOILÀ, LE FORMULAIRE EST TERMINÉ !" />
               <p>
@@ -79,6 +82,15 @@ export default function FormFinished({
                     {fileNumber}
                   </span>
                 )}
+              </p>
+              <p
+                style={{
+                  textDecoration: "underline",
+                  marginTop: "2rem",
+                  fontSize: 12
+                }}
+              >
+                Mentions légales
               </p>
             </>
           ) : (

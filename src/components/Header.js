@@ -10,9 +10,7 @@ export default function Header({ isBackOffice, token }) {
       <div className="container">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
-            <Link to={`/step1`}>
-              <img src={logo} alt="Logo" />
-            </Link>
+            <img src={logo} alt="Logo" />
             <p>Crédit Immobilier : 5 mn pour obtenir le meilleur taux</p>
           </div>
           <div

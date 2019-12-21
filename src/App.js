@@ -67,6 +67,9 @@ export default function App() {
   // isBackOffice is used to find out if the user is on the back office
   const [isBackOffice, setIsBackOffice] = useState(false);
 
+  // error is used to store the error message
+  const [error, setError] = useState("");
+
   return (
     <Router>
       <Header isBackOffice={isBackOffice} token={token} />
@@ -79,12 +82,17 @@ export default function App() {
           />
         </Route>
         <Route exact path="/admin">
-          <AdminLogin setIsBackOffice={setIsBackOffice} setToken={setToken} />
+          <AdminLogin
+            setIsBackOffice={setIsBackOffice}
+            setToken={setToken}
+            token={token}
+          />
         </Route>
         <Route exact path="/step8">
           <FormFinished
             setActualStep={setActualStep}
             userData={userData}
+            setUserData={setUserData}
             setIsBackOffice={setIsBackOffice}
           />
         </Route>
@@ -94,6 +102,8 @@ export default function App() {
             userData={userData}
             setChoiceSelected={setChoiceSelected}
             setIsBackOffice={setIsBackOffice}
+            error={error}
+            setError={setError}
           />
         </Route>
         <Route exact path="/step6">
@@ -103,6 +113,8 @@ export default function App() {
             choiceSelected={choiceSelected}
             setChoiceSelected={setChoiceSelected}
             setIsBackOffice={setIsBackOffice}
+            error={error}
+            setError={setError}
           />
         </Route>
         <Route exact path="/step5">
@@ -112,6 +124,8 @@ export default function App() {
             choiceSelected={choiceSelected}
             setChoiceSelected={setChoiceSelected}
             setIsBackOffice={setIsBackOffice}
+            error={error}
+            setError={setError}
           />
         </Route>
         <Route exact path="/step4">
@@ -148,6 +162,7 @@ export default function App() {
             choiceSelected={choiceSelected}
             setChoiceSelected={setChoiceSelected}
             setIsBackOffice={setIsBackOffice}
+            setError={setError}
           />
         </Route>
         {/* home page redirect the user to step1 if he has not started filling out the form, otherwise to the current step */}
@@ -171,6 +186,7 @@ export default function App() {
         choiceSelected={choiceSelected}
         setChoiceSelected={setChoiceSelected}
         isBackOffice={isBackOffice}
+        error={error}
       />
     </Router>
   );
