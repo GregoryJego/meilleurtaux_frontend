@@ -9,10 +9,14 @@ export default function ProjectAmount({
   setActualStep,
   userData,
   choiceSelected,
-  setChoiceSelected
+  setChoiceSelected,
+  setIsBackOffice
 }) {
   // The actual step is step 6
   setActualStep(6);
+
+  // We are on the Front Office
+  setIsBackOffice(false);
 
   useEffect(() => {
     // Does userData exist ?

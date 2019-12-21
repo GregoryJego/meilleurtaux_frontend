@@ -12,7 +12,13 @@ export default function Prev({
   setChoiceSelected
 }) {
   return (
-    <>
+    <div
+      style={{
+        width: 300,
+        display: "flex",
+        justifyContent: "flex-start"
+      }}
+    >
       {actualStep > 1 && (
         <Link
           style={{
@@ -80,6 +86,6 @@ export default function Prev({
           </p>
         </Link>
       )}
-    </>
+    </div>
   );
 }

@@ -3,10 +3,12 @@ import "../App.css";
 
 export default function ProgressBar({ actualStep }) {
   const progress = Math.round((actualStep / 8) * 100);
-  const hrWidth = 600;
+  const barWidth = 400;
+  const progressWidth = (progress * barWidth) / 100 - 25;
   return (
     <div
       style={{
+        width: barWidth,
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center"
@@ -14,9 +16,9 @@ export default function ProgressBar({ actualStep }) {
     >
       <hr
         style={{
-          width: hrWidth,
+          width: progressWidth,
           height: 4,
-          backgroundColor: "var(--grey3)",
+          backgroundColor: "var(--orange3)",
           position: "relative"
         }}
       />
@@ -30,7 +32,7 @@ export default function ProgressBar({ actualStep }) {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          marginLeft: (progress * hrWidth) / 100
+          marginLeft: progressWidth
         }}
       >
         <div
@@ -47,6 +49,13 @@ export default function ProgressBar({ actualStep }) {
           <p style={{ color: "white", fontSize: 14 }}>{progress}%</p>
         </div>
       </div>
+      <hr
+        style={{
+          width: barWidth - progressWidth,
+          height: 4,
+          backgroundColor: "var(--grey3)"
+        }}
+      />
     </div>
   );
 }

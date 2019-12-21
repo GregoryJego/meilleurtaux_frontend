@@ -7,10 +7,14 @@ export default function KindOfProperty({
   setActualStep,
   userData,
   choiceSelected,
-  setChoiceSelected
+  setChoiceSelected,
+  setIsBackOffice
 }) {
   // The actual step is step 1
   setActualStep(1);
+
+  // We are on the Front Office
+  setIsBackOffice(false);
 
   useEffect(() => {
     // Does userData exist ?
@@ -23,13 +27,7 @@ export default function KindOfProperty({
   return (
     <div className="container">
       <Title label="TYPE DE BIEN" />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between"
-        }}
-      >
+      <div className="flexrowb">
         <CheckBox
           label="MAISON"
           choiceSelected={choiceSelected}

@@ -32,7 +32,7 @@ export default function EmailInput({ label, value, setValue }) {
             padding: ".5rem",
             outline: "none"
           }}
-          value={value}
+          // value={value}
           type="email"
           required
           onChangeCapture={event => setValue(event.target.value)}

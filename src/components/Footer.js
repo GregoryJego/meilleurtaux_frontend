@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
 import Prev from "./Prev";
-import Legend from "./Legend";
 import ProgressBar from "./ProgressBar";
 import Next from "../components/Next";
 
@@ -11,44 +10,53 @@ export default function Footer({
   userData,
   setUserData,
   choiceSelected,
-  setChoiceSelected
+  setChoiceSelected,
+  isBackOffice
 }) {
+  // Label for the Next button
+  let label;
+  if (actualStep === 7) label = "Valider";
+  else label = "Suivant";
+
   return (
     <>
-      {actualStep < 8 && (
+      {actualStep < 8 && !isBackOffice && (
         <div className="container">
           <div
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-              alignItems: "center"
+              alignItems: "center",
+              marginBottom: "2rem"
             }}
           >
-            <div style={{ flex: 1 }}>
-              <Prev
-                actualStep={actualStep}
-                setActualStep={setActualStep}
-                userData={userData}
-                setUserData={setUserData}
-                choiceSelected={choiceSelected}
-                setChoiceSelected={setChoiceSelected}
-              />
-            </div>
-            <ProgressBar actualStep={actualStep} style={{ flex: 1 }} />
-            <div style={{ flex: 1 }}>
-              <Next
-                actualStep={actualStep}
-                setActualStep={setActualStep}
-                userData={userData}
-                setUserData={setUserData}
-                choiceSelected={choiceSelected}
-                setChoiceSelected={setChoiceSelected}
-              />
-            </div>
+            <Prev
+              actualStep={actualStep}
+              setActualStep={setActualStep}
+              userData={userData}
+              setUserData={setUserData}
+              choiceSelected={choiceSelected}
+              setChoiceSelected={setChoiceSelected}
+            />
+            <ProgressBar actualStep={actualStep} />
+            <Next
+              label={label}
+              actualStep={actualStep}
+              setActualStep={setActualStep}
+              userData={userData}
+              setUserData={setUserData}
+              choiceSelected={choiceSelected}
+              setChoiceSelected={setChoiceSelected}
+            />
           </div>
-          <Legend label="* Champ obligatoire - Mentions légales" />
-          <div>CHOIX ETAPE EN COURS : {choiceSelected}</div>
+          <div style={{ fontSize: 10 }}>
+            <span>* Champ obligatoire - </span>
+            <span style={{ textDecoration: "underline" }}>
+              Mentions légales
+            </span>
+          </div>
+          {/* <div>CHOIX ETAPE EN COURS : {choiceSelected}</div> */}
           {/* <div>CHOIX ETAPE PRECEDENTE : {userData[actualStep - 2]}</div> */}
         </div>
       )}

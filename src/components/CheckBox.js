@@ -11,16 +11,8 @@ export default function CheckBox({ label, choiceSelected, setChoiceSelected }) {
 
   return (
     <div
+      className="checkbox"
       style={{
-        border: "1px solid var(--grey)",
-        borderRadius: "5px",
-        boxShadow: "0px 2px 1px var(--grey)",
-        flex: "1",
-        padding: "1rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        cursor: "pointer",
         backgroundColor: isChecked ? "var(--orange)" : "var(--white)",
         color: isChecked ? "var(--white)" : "var(--black)"
       }}

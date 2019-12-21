@@ -4,6 +4,7 @@ import "../App.css";
 import Cookies from "js-cookie";
 
 export default function Next({
+  label,
   actualStep,
   setActualStep,
   userData,
@@ -24,6 +25,7 @@ export default function Next({
   return (
     <div
       style={{
+        width: 300,
         display: "flex",
         justifyContent: "flex-end"
       }}
@@ -83,7 +85,7 @@ export default function Next({
             Cookies.set("userData", newUserData);
           }}
         >
-          <p>Suivant</p>
+          <p>{label}</p>
         </Link>
       )}
     </div>

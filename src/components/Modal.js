@@ -56,9 +56,26 @@ export default function Modal({ typeOfModal, setTypeOfModal, id, setRefresh }) {
             padding: "2rem",
             alignItems: "center",
             borderRadius: 50,
-            width: "60vw"
+            width: "60vw",
+            position: "relative"
           }}
         >
+          <p
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "3rem",
+              color: "var(--orange)",
+              fontSize: 24,
+              fontWeight: "800",
+              cursor: "pointer"
+            }}
+            onClick={() => {
+              setTypeOfModal();
+            }}
+          >
+            X
+          </p>
           {typeOfModal === "delete" && (
             <>
               <p

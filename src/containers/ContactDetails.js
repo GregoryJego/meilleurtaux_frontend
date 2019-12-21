@@ -8,11 +8,14 @@ import Image from "../assets/images/visuel-desktop-email.jpg";
 export default function ContactDetails({
   setActualStep,
   userData,
-  choiceSelected,
-  setChoiceSelected
+  setChoiceSelected,
+  setIsBackOffice
 }) {
   // The actual step is step 7
   setActualStep(7);
+
+  // We are on the Front Office
+  setIsBackOffice(false);
 
   const [email, setEmail] = useState();
   const [isChecked, setIsChecked] = useState(false);
@@ -40,8 +43,6 @@ export default function ContactDetails({
         email.indexOf(".") === 0 ||
         email.indexOf(".") === email.length - 1
       )
-        //   console.log("La position de @ est : " + choiceSelected.indexOf("@"));
-        // console.log("La position de . est : " + choiceSelected.indexOf("."));
         setError("Veuillez entrer une adresse email valide");
       else {
         setError("");
@@ -105,9 +106,9 @@ export default function ContactDetails({
           style={{
             marginRight: ".5rem"
           }}
-          value={isChecked}
+          // value={isChecked}
           checked={isChecked}
-          onClick={() => {
+          onChange={() => {
             setIsChecked(!isChecked);
           }}
         />

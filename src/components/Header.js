@@ -2,23 +2,43 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import logo from "../assets/images/logo.jpg";
+import { Info } from "@material-ui/icons";
 
-export default function Header({ actualStep }) {
+export default function Header({ isBackOffice, token }) {
   return (
     <>
-      {actualStep <= 8 && (
-        <>
-          <div className="container">
-            <div>
-              <Link to={`/step1`}>
-                <img src={logo} alt="Logo" />
-              </Link>
-              <p>Crédit Immobilier: 5 mn pour obtenir le meilleur taux</p>
-            </div>
+      <div className="container">
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div>
+            <Link to={`/step1`}>
+              <img src={logo} alt="Logo" />
+            </Link>
+            <p>Crédit Immobilier : 5 mn pour obtenir le meilleur taux</p>
           </div>
-          <hr />
-        </>
-      )}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Link
+              style={{
+                display: "flex"
+              }}
+              to={isBackOffice ? `/` : token ? `/admin/infos` : `/admin`}
+            >
+              <Info />
+              {isBackOffice ? (
+                <p>Retourner sur le Front-Office</p>
+              ) : (
+                <p>Accéder au Back-Office</p>
+              )}
+            </Link>
+          </div>
+        </div>
+      </div>
+      <hr style={{ borderBottom: "1px solid var(--grey)" }} />
     </>
   );
 }

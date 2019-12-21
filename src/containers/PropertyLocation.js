@@ -8,16 +8,20 @@ export default function PropertyLocation({
   setActualStep,
   userData,
   choiceSelected,
-  setChoiceSelected
+  setChoiceSelected,
+  setIsBackOffice
 }) {
   // The actual step is step 5
   setActualStep(5);
+
+  // We are on the Front Office
+  setIsBackOffice(false);
 
   useEffect(() => {
     // Does userData exist ?
     if (userData) {
       // If yes, we get the stored value : "location" for step 5
-      setChoiceSelected(userData["location"]);
+      setChoiceSelected(userData.location);
     } else setChoiceSelected();
   }, [setChoiceSelected, userData]);
 

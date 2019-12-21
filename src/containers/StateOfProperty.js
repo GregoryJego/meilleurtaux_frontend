@@ -7,10 +7,14 @@ export default function StateOfProperty({
   setActualStep,
   userData,
   choiceSelected,
-  setChoiceSelected
+  setChoiceSelected,
+  setIsBackOffice
 }) {
   // The actual step is step 2
   setActualStep(2);
+
+  // We are on the Front Office
+  setIsBackOffice(false);
 
   useEffect(() => {
     // Does userData exist ?
@@ -23,13 +27,7 @@ export default function StateOfProperty({
   return (
     <div className="container">
       <Title label="ETAT DU BIEN" />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between"
-        }}
-      >
+      <div className="flexrowb">
         <CheckBox
           label="ANCIEN"
           choiceSelected={choiceSelected}

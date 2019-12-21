@@ -7,9 +7,18 @@ import Cookies from "js-cookie";
 import Title from "../components/Title";
 import ErrorMsg from "../components/ErrorMsg";
 
-export default function FormFinished({ userData, setActualStep }) {
+export default function FormFinished({
+  userData,
+  setActualStep,
+  setIsBackOffice
+}) {
+  const [isLoading, setIsLoading] = useState(true);
+
   // The actual step is step 8
   setActualStep(8);
+
+  // We are on the Front Office
+  setIsBackOffice(false);
 
   // fileNumber will be used to retrieve the value sent by the server
   const [fileNumber, setFileNumber] = useState();
@@ -19,10 +28,9 @@ export default function FormFinished({ userData, setActualStep }) {
 
   useEffect(() => {
     const sendData = async () => {
+      // Does userData exist ?
       if (userData) {
-        console.log("userData existe bien");
         try {
-          console.log("On essaie d'envoyer les données");
           const formattedData = {
             type: userData.type,
             state: userData.state,
@@ -35,58 +43,62 @@ export default function FormFinished({ userData, setActualStep }) {
             totalBudget: Number(userData.budget.split("-")[3]),
             email: userData.email
           };
+          // We try to send the data
           const result = await axios.post(
             "https://meilleurtaux-backend-gj.herokuapp.com/estimate/create",
             formattedData
           );
+          // We get the fileNumber
           setFileNumber(result.data);
+          // We remove the cookie
           Cookies.remove("userData");
         } catch (e) {
-          console.log("Une erreur s'est produite");
           console.log(e.message);
           setError(e.message);
         }
       } else setError("Veuillez recommencer");
+      // We stop the loading
+      setIsLoading(false);
     };
     sendData();
   }, [userData]);
 
   return (
     <div className="container">
-      {error === "" ? (
-        <>
-          <Title label="ET VOILÀ, LE FORMULAIRE EST TERMINÉ !" />
-          <p>
-            Votre numéro de dossier est le :
-            {fileNumber && (
-              <span style={{ fontWeight: "800" }}> {fileNumber}</span>
-            )}
-          </p>
-        </>
+      {isLoading ? (
+        <div className="loader"></div>
       ) : (
         <>
-          <Title label="OUPS ! UNE ERREUR S'EST PRODUITE, VEUILLEZ RECOMMENCER" />
-          {ErrorMsg(error)}
-          <Link
-            to={`/step1`}
-            style={{
-              marginTop: "2rem",
-              borderRadius: 35,
-              width: 100,
-              textDecoration: "none",
-              padding: ".5rem 1rem",
-              display: "flex",
-              justifyContent: "center",
-              color: "var(--white)",
-              cursor: "pointer",
-              backgroundColor: "var(--orange)"
-            }}
-            onClick={() => {
-              Cookies.remove("userData");
-            }}
-          >
-            RECOMMENCER
-          </Link>
+          {error === "" ? (
+            <>
+              <Title label="ET VOILÀ, LE FORMULAIRE EST TERMINÉ !" />
+              <p>
+                Votre numéro de dossier est le :
+                {fileNumber && (
+                  <span style={{ fontWeight: "800", marginLeft: "1rem" }}>
+                    {fileNumber}
+                  </span>
+                )}
+              </p>
+            </>
+          ) : (
+            <>
+              <Title label="OUPS ! UNE ERREUR S'EST PRODUITE, VEUILLEZ RECOMMENCER" />
+              {ErrorMsg(error)}
+              <Link
+                to={`/step1`}
+                className="button"
+                style={{
+                  marginTop: "2rem"
+                }}
+                onClick={() => {
+                  Cookies.remove("userData");
+                }}
+              >
+                RECOMMENCER
+              </Link>
+            </>
+          )}
         </>
       )}
     </div>
