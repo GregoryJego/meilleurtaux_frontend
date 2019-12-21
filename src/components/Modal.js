@@ -149,7 +149,6 @@ export default function Modal({ typeOfModal, setTypeOfModal, id, setRefresh }) {
                     >
                       {/* Colonne de gauche */}
                       <ModalInfoLeftCol />
-
                       {/* Colonne de droite */}
                       <div
                         style={{
