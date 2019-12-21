@@ -67,7 +67,7 @@ export default function ContactDetails({
           Un devis vous sera envoyé par mail avec un récapitulatif de votre
           demande.
         </div>
-        <img src={Image} alt="Desktop" style={{ flex: 0.2 }} />
+        <img src={Image} alt="Desktop" />
       </div>
       <EmailInput
         label="Adresse e-mail emprunteur*"
