@@ -52,14 +52,8 @@ export default function NumberInput({
           <span>{label}</span>
         </div>
         <input
+          className="nbinput"
           style={{
-            flex: 2,
-            height: 24,
-            fontFamily: "Oswald",
-            fontWeight: "800",
-            fontSize: 18,
-            padding: ".5rem",
-            textAlign: "right",
             border: "1px solid var(--orange)",
             borderBottom: "3px solid var(--orange)"
           }}
