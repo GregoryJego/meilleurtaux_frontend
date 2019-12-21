@@ -123,11 +123,7 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
                                 }}
                               >
                                 {NumberWithSpaces(
-                                  Number(
-                                    result.location
-                                      .split("(")[1]
-                                      .replace(")", "")
-                                  )
+                                  result.location.split("(")[1].replace(")", "")
                                 )}
                               </p>
                               <p
@@ -165,7 +161,7 @@ export default function Admin({ setIsBackOffice, token, setToken }) {
                                   flex: 2
                                 }}
                               >
-                                {NumberWithSpaces(result.totalBudget)} €
+                                {result.totalBudget} €
                               </p>
                             </div>
                             <Delete

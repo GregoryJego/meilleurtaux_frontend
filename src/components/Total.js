@@ -35,7 +35,7 @@ export default function Total({ label, bgColor, total, choiceSelected }) {
             borderBottom: "3px solid var(--grey)"
           }}
         >
-          <p>{NumberWithSpaces(total)}</p>
+          <p>{NumberWithSpaces(toString(total))}</p>
         </div>
         <span style={{ marginLeft: ".5rem" }}>€</span>
       </div>

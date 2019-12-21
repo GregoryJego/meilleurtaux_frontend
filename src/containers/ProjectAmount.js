@@ -4,6 +4,7 @@ import Title from "../components/Title";
 import NumberInput from "../components/NumberInput";
 import Total from "../components/Total";
 import ErrorMsg from "../components/ErrorMsg";
+import NumberWithSpaces from "../functions/NumberWithSpaces";
 
 export default function ProjectAmount({
   setActualStep,
@@ -59,7 +60,13 @@ export default function ProjectAmount({
     if (propertyAmount != 0 && notaryFees != 0) {
       setError("");
       setChoiceSelected(
-        propertyAmount + "-" + worksAmount + "-" + notaryFees + "-" + newTotal
+        NumberWithSpaces(propertyAmount) +
+          "-" +
+          NumberWithSpaces(worksAmount) +
+          "-" +
+          NumberWithSpaces(notaryFees) +
+          "-" +
+          newTotal
       );
     } else
       setError(
